@@ -1,1 +1,27 @@
+{{#if copyright.claimant}}
+/*
+All the code that follow is
+Copyright (c) {{copyright.year}}, {{copyright.claimant}}. All Rights Reserved.
+Not for reuse without permission.
+*/
+package pages.app
 
+import geb.Page
+
+class {{model.namespace}}Page extends Page {
+    static at = { title == "MOTI Hired Equipment Tracking System" && $("#navbar-current-user > li > a", text: startsWith("Hets Test"))}
+    static url = "?#/home"
+
+    static content = {
+    {{#attributes}}
+    {{#if attribute.strategy}}
+    @FindBy({{attribute.strategy}} = "{{{attribute.value}}}")
+    @CacheLookup
+    private {{#equals type 'radio'}}List<WebElement>{{else}}WebElement{{/equals}} {{attribute.name}};
+    {{else}}
+    private final String {{attribute.name}} = "{{{attribute.value}}}";
+    {{/if}}
+    {{/attributes}}
+          
+    }
+}
