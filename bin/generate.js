@@ -11,7 +11,7 @@ var parser = new ArgumentParser({
 });
 
 parser.addArgument(['-t', '--target'], {
-    choices: ['cs', 'java', 'robot'],
+    choices: ['cs', 'java', 'robot', 'geb'],
     help: 'Generator target',
     required: true
 });
@@ -55,7 +55,8 @@ var paths = {
 var targets = {
     cs: { label: 'C#' },
     java: { label: 'Java' },
-    robot: { label: 'Robot Framework' }
+    robot: { label: 'Robot Framework' },
+    geb: { label: 'GEB Framework' }
 };
 
 function getFileContent(path) {
